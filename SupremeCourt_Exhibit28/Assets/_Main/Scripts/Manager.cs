@@ -9,6 +9,8 @@ public class Manager : MonoBehaviour
     [SerializeField] private Scrollbar scrollBar;
     [SerializeField] private Slider slider;
     [SerializeField] private Image filler;
+
+    [SerializeField] private Animator[] videoPlayerAnimators;
     public void OnSliderValueChange()
     {
         scrollBar.value = slider.value;
@@ -39,6 +41,24 @@ public class Manager : MonoBehaviour
         var to = toAbs + toMin;
 
         return to;
+    }
+
+    private void PlayAnimator(bool value)
+    {
+        foreach (Animator i in videoPlayerAnimators)
+        {
+            i.SetBool("IsPlaying", value);
+        }
+    }
+
+    private bool animationState;
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            animationState = !animationState;
+            PlayAnimator(animationState);
+        }
     }
 
 
