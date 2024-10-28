@@ -9,17 +9,25 @@ using UnityEngine.UI;
 
 public class Manager : MonoBehaviour
 {
+    public static Manager instance;
+
     [SerializeField] private Scrollbar scrollBar;
     [SerializeField] private Slider slider;
     [SerializeField] private Image filler;
     [SerializeField] private Transform buttonsParentTransform;
     [SerializeField] private Animator[] videoPlayerAnimators;
     [SerializeField] private List<Texture2D> videoButtonTextures;
+    [SerializeField] private List<Sprite> videoSelectionSprites;
+    [SerializeField] private Image videoSelectImage;
+    [SerializeField] private Sprite[] act_deactive_sprite;
     
 
     private void Awake()
     {
+        instance = this;
+
         StartCoroutine(LoadVideoButtonTextures());
+        StartCoroutine(LoadVideoSelectionSprite());
     }
 
     public void OnSliderValueChange()
@@ -37,8 +45,6 @@ public class Manager : MonoBehaviour
     {
         slider.value += value;
     }
-
-
     private float Remap(float from, float fromMin, float fromMax, float toMin, float toMax)
     {
         var fromAbs = from - fromMin;
@@ -53,7 +59,6 @@ public class Manager : MonoBehaviour
 
         return to;
     }
-
     private void PlayAnimator(bool value)
     {
         foreach (Animator i in videoPlayerAnimators)
@@ -61,7 +66,6 @@ public class Manager : MonoBehaviour
             i.SetBool("IsPlaying", value);
         }
     }
-
     private bool animationState;
     private void Update()
     {
@@ -75,7 +79,7 @@ public class Manager : MonoBehaviour
     private IEnumerator LoadVideoButtonTextures()
     {
         yield return null;
-        var files = Directory.GetFiles(Application.streamingAssetsPath + "/Images/SelectionImage/", "*.*", SearchOption.AllDirectories);
+        var files = Directory.GetFiles(Application.streamingAssetsPath + "/Images/ButtonImages/", "*.*", SearchOption.AllDirectories);
         foreach (string filename in files)
         {
             if (Regex.IsMatch(filename, @".jpg|.png|.jpeg$"))
@@ -94,6 +98,36 @@ public class Manager : MonoBehaviour
         {
             buttonsParentTransform.GetChild(i).GetChild(0).GetComponent<RawImage>().texture = videoButtonTextures[i];
         }
+    }
+
+    private IEnumerator LoadVideoSelectionSprite()
+    {
+        yield return null;
+        var files = Directory.GetFiles(Application.streamingAssetsPath + "/Images/SelectedImages/", "*.*", SearchOption.AllDirectories);
+        foreach (string filename in files)
+        {
+            if (Regex.IsMatch(filename, @".jpg|.png|.jpeg$"))
+                if (!filename.Contains(".meta"))
+                {
+                    var rawData = File.ReadAllBytes(filename);
+                    Texture2D tex = new(2, 2);
+                    tex.LoadImage(rawData);
+                    Sprite sprite = Sprite.Create(tex, new Rect(0, 0, tex.width, tex.height), new Vector2(0.5f, 0.5f));
+                    videoSelectionSprites.Add(sprite);
+                }
+        }
+    }
+
+    public void SelectVideoImage(int index)
+    {
+        foreach (Transform child in buttonsParentTransform)
+        {
+            child.GetComponent<Image>().sprite = act_deactive_sprite[0];
+        }
+        buttonsParentTransform.GetChild(index).GetComponent<Image>().sprite = act_deactive_sprite[1];
+
+        videoSelectImage.sprite = videoSelectionSprites[index];
+        Debug.Log(index);
     }
 
 

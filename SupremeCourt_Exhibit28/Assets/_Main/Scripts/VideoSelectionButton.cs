@@ -4,7 +4,6 @@ using UnityEngine.UI;
 public class VideoSelectionButton : MonoBehaviour
 {
     private Button button;
-    private int videoIndex;
 
     void Start()
     {
@@ -14,7 +13,8 @@ public class VideoSelectionButton : MonoBehaviour
 
     void OnButtonClick()
     {
-        videoIndex = transform.GetSiblingIndex() + 1;
+       int videoIndex = transform.GetSiblingIndex();
+        Manager.instance.SelectVideoImage(videoIndex);
     }
 
 }
