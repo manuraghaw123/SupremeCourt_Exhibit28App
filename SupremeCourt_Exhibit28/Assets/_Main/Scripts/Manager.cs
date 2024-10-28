@@ -1,7 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.UI;
+
 
 
 public class Manager : MonoBehaviour
@@ -9,8 +12,16 @@ public class Manager : MonoBehaviour
     [SerializeField] private Scrollbar scrollBar;
     [SerializeField] private Slider slider;
     [SerializeField] private Image filler;
-
+    [SerializeField] private Transform buttonsParentTransform;
     [SerializeField] private Animator[] videoPlayerAnimators;
+    [SerializeField] private List<Texture2D> videoButtonTextures;
+    
+
+    private void Awake()
+    {
+        StartCoroutine(LoadVideoButtonTextures());
+    }
+
     public void OnSliderValueChange()
     {
         scrollBar.value = slider.value;
@@ -60,6 +71,31 @@ public class Manager : MonoBehaviour
             PlayAnimator(animationState);
         }
     }
+
+    private IEnumerator LoadVideoButtonTextures()
+    {
+        yield return null;
+        var files = Directory.GetFiles(Application.streamingAssetsPath + "/Images/SelectionImage/", "*.*", SearchOption.AllDirectories);
+        foreach (string filename in files)
+        {
+            if (Regex.IsMatch(filename, @".jpg|.png|.jpeg$"))
+                if (!filename.Contains(".meta"))
+                {
+                    var rawData = File.ReadAllBytes(filename);
+                    Texture2D tex = new (2, 2);
+                    tex.LoadImage(rawData);
+                    videoButtonTextures.Add(tex);
+                }
+        }
+
+        yield return new WaitForSeconds(0.2f);
+
+        for (int i = 0; i < videoButtonTextures.Count; i++)
+        {
+            buttonsParentTransform.GetChild(i).GetChild(0).GetComponent<RawImage>().texture = videoButtonTextures[i];
+        }
+    }
+
 
 
 
