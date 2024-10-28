@@ -17,8 +17,8 @@ public class Manager : MonoBehaviour
     [SerializeField] private Transform buttonsParentTransform;
     [SerializeField] private Animator[] videoPlayerAnimators;
     [SerializeField] private List<Texture2D> videoButtonTextures;
-    [SerializeField] private List<Sprite> videoSelectionSprites;
-    [SerializeField] private Image videoSelectImage;
+    [SerializeField] private List<Texture2D> videoSelectionSprites;
+    [SerializeField] private RawImage videoSelectImage;
     [SerializeField] private Sprite[] act_deactive_sprite;
     
 
@@ -112,8 +112,8 @@ public class Manager : MonoBehaviour
                     var rawData = File.ReadAllBytes(filename);
                     Texture2D tex = new(2, 2);
                     tex.LoadImage(rawData);
-                    Sprite sprite = Sprite.Create(tex, new Rect(0, 0, tex.width, tex.height), new Vector2(0.5f, 0.5f));
-                    videoSelectionSprites.Add(sprite);
+                  
+                    videoSelectionSprites.Add(tex);
                 }
         }
     }
@@ -126,8 +126,8 @@ public class Manager : MonoBehaviour
         }
         buttonsParentTransform.GetChild(index).GetComponent<Image>().sprite = act_deactive_sprite[1];
 
-        videoSelectImage.sprite = videoSelectionSprites[index];
-        Debug.Log(index);
+        videoSelectImage.texture = videoSelectionSprites[index];
+       
     }
 
 
