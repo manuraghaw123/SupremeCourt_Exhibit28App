@@ -17,6 +17,7 @@ public class InfoText
 [Serializable]
 public class Infos
 {
+    public string name;
     public string info1;
     public string info2;
     public string info3;
@@ -28,6 +29,16 @@ public class Manager : MonoBehaviour
 {
     public static Manager instance;
 
+
+    public enum BuildType
+    { 
+      PresidentOath,
+      CJIOath
+    }
+
+
+    public BuildType buildType;
+   
     public InfoText infoText;
 
     [SerializeField] private Transform canvasTransorm;
@@ -48,20 +59,37 @@ public class Manager : MonoBehaviour
     [SerializeField] private Sprite[] videoButtonSprite;
     [SerializeField] private bool animationState;
 
-    int videoIndex;
-    int tempIndex = -1;
-    bool videoStatus;
-    bool sliderReset;
+    private int videoIndex;
+    private int tempIndex = -1;
+    private bool videoStatus;
+    private  bool sliderReset;
+    private string folderName;
     
 
     private void Awake()
     {
         instance = this;
 
+        if (buildType == BuildType.PresidentOath)
+        {
+            folderName = "/President";
+        }
+        else
+        {
+            folderName = "/CJI";
+        }
+
         vidPlayer.loopPointReached += EndReached;
 
-        string json = File.ReadAllText(Application.streamingAssetsPath + "/InfoText.json");
+        string json = File.ReadAllText(Application.streamingAssetsPath + folderName+"/InfoText.json");
         infoText = JsonUtility.FromJson<InfoText>(json);
+
+        for (int i = 0; i < buttonsParentTransform.childCount; i++)
+        {
+         
+            buttonsParentTransform.GetChild(i).GetChild(1).GetComponent<TextMeshProUGUI>().text =
+            infoText.infos[i].name;
+        }
 
         StartCoroutine(LoadVideoButtonTextures());
         StartCoroutine(LoadVideoSelectionSprite());
@@ -138,7 +166,7 @@ public class Manager : MonoBehaviour
     private IEnumerator LoadVideoButtonTextures()
     {
         yield return null;
-        var files = Directory.GetFiles(Application.streamingAssetsPath + "/Images/ButtonImages/", "*.*", SearchOption.AllDirectories);
+        var files = Directory.GetFiles(Application.streamingAssetsPath +folderName + "/Images/ButtonImages/", "*.*", SearchOption.AllDirectories);
         foreach (string filename in files)
         {
             if (Regex.IsMatch(filename, @".jpg|.png|.jpeg$"))
@@ -161,7 +189,7 @@ public class Manager : MonoBehaviour
     private IEnumerator LoadVideoSelectionSprite()
     {
         yield return null;
-        var files = Directory.GetFiles(Application.streamingAssetsPath + "/Images/SelectedImages/", "*.*", SearchOption.AllDirectories);
+        var files = Directory.GetFiles(Application.streamingAssetsPath + folderName + "/Images/SelectedImages/", "*.*", SearchOption.AllDirectories);
         foreach (string filename in files)
         {
             if (Regex.IsMatch(filename, @".jpg|.png|.jpeg$"))
@@ -225,7 +253,7 @@ public class Manager : MonoBehaviour
     {
         if (tempIndex != index)
         {
-            vidPlayer.url = Application.streamingAssetsPath + "/videos/" + index.ToString() + ".mp4";
+            vidPlayer.url = Application.streamingAssetsPath + folderName + "/videos/" + index.ToString() + ".mp4";
         }
        
         vidPlayer.Play();
