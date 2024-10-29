@@ -51,12 +51,7 @@ public class Manager : MonoBehaviour
     int videoIndex;
     int tempIndex = -1;
     bool videoStatus;
-    [SerializeField] bool sliderReset;
-    
-
-    
-
-
+    bool sliderReset;
     
 
     private void Awake()
@@ -99,9 +94,14 @@ public class Manager : MonoBehaviour
         
     }
 
-    public void ResetSlider()
+    public void ResetScrollView()
     {
         sliderReset = true;
+
+        foreach (Transform child in buttonsParentTransform)
+        {
+            child.GetComponent<Image>().sprite = act_deactive_sprite[0];
+        }
 
         Invoke(nameof(ResetSliderOff), 0.2f);
     }
@@ -126,6 +126,8 @@ public class Manager : MonoBehaviour
     }
 
     #endregion
+
+
     private void PlayAnimator(bool value)
     {
         foreach (Animator i in videoPlayerAnimators)
@@ -269,7 +271,7 @@ public class Manager : MonoBehaviour
     {
         StopVideo();
     }
-    private void Home()
+    public void Home()
     {
         foreach (Transform child in canvasTransorm)
         {
@@ -297,8 +299,15 @@ public class Manager : MonoBehaviour
     }
     public void BackFromVideo()
     {
-        StopVideo();
-        Invoke(nameof(SwitchToSelectionScreen), 1.3f);
+        if (animationState)
+        {
+            StopVideo();
+            Invoke(nameof(SwitchToSelectionScreen), 1.3f);
+        }
+        else
+        {
+            SwitchToSelectionScreen();
+        }
     }
     public void BackFromHome()
     {
@@ -312,10 +321,4 @@ public class Manager : MonoBehaviour
             Home();
         }
     }
-
-   
-
-    
-
-    
 }
