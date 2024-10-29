@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 using TMPro;
+using UnityEngine.Video;
 
 [Serializable]
 public class InfoText
@@ -29,6 +30,8 @@ public class Manager : MonoBehaviour
 
     public InfoText infoText;
 
+    [SerializeField] private Transform canvasTransorm;
+
     [SerializeField] private Scrollbar scrollBar;
     [SerializeField] private Slider slider;
     [SerializeField] private Image filler;
@@ -40,17 +43,48 @@ public class Manager : MonoBehaviour
     [SerializeField] private Sprite[] act_deactive_sprite;
 
     [SerializeField] private Transform bigTextHolder, smallTextHolder;
+    [SerializeField] private VideoPlayer vidPlayer;
+    [SerializeField] private Image videoButton;
+    [SerializeField] private Sprite[] videoButtonSprite;
+    [SerializeField] private bool animationState;
+
+    int videoIndex;
+    int tempIndex = -1;
+    bool videoStatus;
+    [SerializeField] bool sliderReset;
+    
+
+    
+
+
     
 
     private void Awake()
     {
         instance = this;
 
+        vidPlayer.loopPointReached += EndReached;
+
         string json = File.ReadAllText(Application.streamingAssetsPath + "/InfoText.json");
         infoText = JsonUtility.FromJson<InfoText>(json);
 
         StartCoroutine(LoadVideoButtonTextures());
         StartCoroutine(LoadVideoSelectionSprite());
+    }
+
+    private void Update()
+    {
+        if (sliderReset)
+        {
+            slider.value = 1;
+        }
+    }
+
+    #region slider and scroll
+
+    private void ResetSliderOff()
+    {
+        sliderReset = false;
     }
 
     public void OnSliderValueChange()
@@ -61,7 +95,15 @@ public class Manager : MonoBehaviour
 
     public void OnScrollBarValueChange()
     {
-        slider.value = scrollBar.value;
+      slider.value = scrollBar.value;
+        
+    }
+
+    public void ResetSlider()
+    {
+        sliderReset = true;
+
+        Invoke(nameof(ResetSliderOff), 0.2f);
     }
 
     public void ButtonSlider(float value)
@@ -82,6 +124,8 @@ public class Manager : MonoBehaviour
 
         return to;
     }
+
+    #endregion
     private void PlayAnimator(bool value)
     {
         foreach (Animator i in videoPlayerAnimators)
@@ -89,16 +133,6 @@ public class Manager : MonoBehaviour
             i.SetBool("IsPlaying", value);
         }
     }
-    private bool animationState;
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            animationState = !animationState;
-            PlayAnimator(animationState);
-        }
-    }
-
     private IEnumerator LoadVideoButtonTextures()
     {
         yield return null;
@@ -122,7 +156,6 @@ public class Manager : MonoBehaviour
             buttonsParentTransform.GetChild(i).GetChild(0).GetComponent<RawImage>().texture = videoButtonTextures[i];
         }
     }
-
     private IEnumerator LoadVideoSelectionSprite()
     {
         yield return null;
@@ -140,7 +173,6 @@ public class Manager : MonoBehaviour
                 }
         }
     }
-
     public void SelectVideoImage(int index)
     {
         foreach (Transform child in buttonsParentTransform)
@@ -151,9 +183,16 @@ public class Manager : MonoBehaviour
 
         SelectText(index);
 
-        videoSelectImage.texture = videoSelectionSprites[index];
-    }
+        if (index >= 0 && index < videoSelectionSprites.Count)
+        {
+            videoSelectImage.texture = videoSelectionSprites[index];
+        }
 
+        videoIndex = index;
+
+        Invoke(nameof(SwitchToVideoScreen), 0.5f);
+
+    }
     private void SelectText(int index)
     {
         bigTextHolder.GetChild(0).GetComponent<TextMeshProUGUI>().text = infoText.infos[index].info1;
@@ -168,10 +207,115 @@ public class Manager : MonoBehaviour
         smallTextHolder.GetChild(3).GetComponent<TextMeshProUGUI>().text = infoText.infos[index].info4;
         smallTextHolder.GetChild(4).GetComponent<TextMeshProUGUI>().text = infoText.infos[index].info5;
     }
+    private void SwitchToVideoScreen()
+    {
+        canvasTransorm.GetChild(2).gameObject.SetActive(false);
+        canvasTransorm.GetChild(3).gameObject.SetActive(true);
+    }
+    private void SwitchToSelectionScreen()
+    {
+        canvasTransorm.GetChild(3).gameObject.SetActive(false);
+        canvasTransorm.GetChild(2).gameObject.SetActive(true);
+        videoButton.sprite = videoButtonSprite[1];
+
+    }
+    private void PlayVideo(int index)
+    {
+        if (tempIndex != index)
+        {
+            vidPlayer.url = Application.streamingAssetsPath + "/videos/" + index.ToString() + ".mp4";
+        }
+       
+        vidPlayer.Play();
+        if (!animationState)
+        {
+            animationState = true;
+            PlayAnimator(animationState);
+        }
+        else
+        {
+            videoButton.sprite = videoButtonSprite[1];
+        }
+
+        tempIndex = index;
+
+    }
+    private void PauseVideo()
+    {
+        vidPlayer.Pause();
+        videoButton.sprite = videoButtonSprite[0];
+    }
+    private void StopVideo()
+    {
+        if (vidPlayer.isPlaying)
+        {
+            vidPlayer.Stop();
+        }
+
+        if (animationState)
+        {
+          animationState = false;
+          PlayAnimator(false);
+        }
+
+       
+        videoButton.sprite = videoButtonSprite[1];
+        tempIndex = -1;
+        videoStatus = false;
+
+      
+    }
+    private void EndReached(UnityEngine.Video.VideoPlayer vp)
+    {
+        StopVideo();
+    }
+    private void Home()
+    {
+        foreach (Transform child in canvasTransorm)
+        {
+            child.gameObject.SetActive(false);
+        }
+
+        canvasTransorm.GetChild(0).gameObject.SetActive(true);
+    }
+    private void OnApplicationQuit()
+    {
+        vidPlayer.loopPointReached -= EndReached;
+    }
+    public void VideoStatus()
+    {
+        videoStatus = !videoStatus;
+
+        if (videoStatus)
+        {
+            PlayVideo(videoIndex + 1);
+        }
+        else
+        {
+            PauseVideo();
+        }
+    }
+    public void BackFromVideo()
+    {
+        StopVideo();
+        Invoke(nameof(SwitchToSelectionScreen), 1.3f);
+    }
+    public void BackFromHome()
+    {
+        if (animationState)
+        {
+            StopVideo();
+            Invoke(nameof(Home), 1.3f);
+        }
+        else
+        {
+            Home();
+        }
+    }
+
    
 
+    
 
-
-
-
+    
 }
