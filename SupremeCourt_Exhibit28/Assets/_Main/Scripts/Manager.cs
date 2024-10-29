@@ -70,6 +70,8 @@ public class Manager : MonoBehaviour
     {
         instance = this;
 
+        ConfigManager.instance.currentVolume += OnVolumeChange;
+
         if (buildType == BuildType.PresidentOath)
         {
             folderName = "/President";
@@ -155,7 +157,10 @@ public class Manager : MonoBehaviour
 
     #endregion
 
-
+    private void OnVolumeChange(float value)
+    {
+        vidPlayer.SetDirectAudioVolume(0, value);
+    }
     private void PlayAnimator(bool value)
     {
         foreach (Animator i in videoPlayerAnimators)
@@ -311,6 +316,7 @@ public class Manager : MonoBehaviour
     private void OnApplicationQuit()
     {
         vidPlayer.loopPointReached -= EndReached;
+        ConfigManager.instance.currentVolume += OnVolumeChange;
     }
     public void VideoStatus()
     {
