@@ -4,12 +4,30 @@ using System.IO;
 using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
+using TMPro;
 
+[Serializable]
+public class InfoText
+{
+    public List<Infos> infos;
+}
 
+[Serializable]
+public class Infos
+{
+    public string info1;
+    public string info2;
+    public string info3;
+    public string info4;
+    public string info5;
+}
 
 public class Manager : MonoBehaviour
 {
     public static Manager instance;
+
+    public InfoText infoText;
 
     [SerializeField] private Scrollbar scrollBar;
     [SerializeField] private Slider slider;
@@ -20,11 +38,16 @@ public class Manager : MonoBehaviour
     [SerializeField] private List<Texture2D> videoSelectionSprites;
     [SerializeField] private RawImage videoSelectImage;
     [SerializeField] private Sprite[] act_deactive_sprite;
+
+    [SerializeField] private Transform bigTextHolder, smallTextHolder;
     
 
     private void Awake()
     {
         instance = this;
+
+        string json = File.ReadAllText(Application.streamingAssetsPath + "/InfoText.json");
+        infoText = JsonUtility.FromJson<InfoText>(json);
 
         StartCoroutine(LoadVideoButtonTextures());
         StartCoroutine(LoadVideoSelectionSprite());
@@ -126,9 +149,26 @@ public class Manager : MonoBehaviour
         }
         buttonsParentTransform.GetChild(index).GetComponent<Image>().sprite = act_deactive_sprite[1];
 
+        SelectText(index);
+
         videoSelectImage.texture = videoSelectionSprites[index];
-       
     }
+
+    private void SelectText(int index)
+    {
+        bigTextHolder.GetChild(0).GetComponent<TextMeshProUGUI>().text = infoText.infos[index].info1;
+        bigTextHolder.GetChild(1).GetComponent<TextMeshProUGUI>().text = infoText.infos[index].info2;
+        bigTextHolder.GetChild(2).GetComponent<TextMeshProUGUI>().text = infoText.infos[index].info3;
+        bigTextHolder.GetChild(3).GetComponent<TextMeshProUGUI>().text = infoText.infos[index].info4;
+        bigTextHolder.GetChild(4).GetComponent<TextMeshProUGUI>().text = infoText.infos[index].info5;
+
+        smallTextHolder.GetChild(0).GetComponent<TextMeshProUGUI>().text = infoText.infos[index].info1;
+        smallTextHolder.GetChild(1).GetComponent<TextMeshProUGUI>().text = infoText.infos[index].info2;
+        smallTextHolder.GetChild(2).GetComponent<TextMeshProUGUI>().text = infoText.infos[index].info3;
+        smallTextHolder.GetChild(3).GetComponent<TextMeshProUGUI>().text = infoText.infos[index].info4;
+        smallTextHolder.GetChild(4).GetComponent<TextMeshProUGUI>().text = infoText.infos[index].info5;
+    }
+   
 
 
 
