@@ -1,124 +1,139 @@
 {
   "infos": [
     {
-      "name":"Justice A.M. Ahmadi",
-      "info1": "13 MAY 1962",
+      "id":1,
+      "name":"Dr. Rajendra Prasad",
+      "info1": "26 JANUARY 1950",
       "info2":"CJI Justice A.M. Ahmadi",
-      "info3":"administrating oath of office to",
-      "info4":"Dr. Sarvapalli RadhaKrishanan",
+      "info3":"administering Oath of Office to",
+      "info4":"Dr. Rajendra Prasad",
       "info5":"as the president of india"
     },
     {
-      "name":"Justice A.M. Ahmadi",
-      "info1": "Test1_2",
-      "info2":"Test2_2",
-      "info3":"Test3_2",
-      "info4":"Test4_2",
-      "info5":"Test5_2"
+      "id":2,
+      "name":"Dr. Sarvepalli Radhakrishnan",
+      "info1": "13 MAY 1962",
+      "info2":"Chief Justice Bhuvneshwar Prasad Sinha",
+      "info3":"administering Oath of Office to",
+      "info4":"Dr. Sarvepalli Radhakrishnan",
+      "info5":"as the president of india"
     },
     {
-      "name":"Justice A.M. Ahmadi",
-      "info1": "Test1_3",
-      "info2":"Test2_3",
-      "info3":"Test3_3",
-      "info4":"Test4_3",
-      "info5":"Test5_3"
+      "id":3,
+      "name":"Dr. Zakir Husain",
+      "info1": "13 MAY 1967",
+      "info2":"Chief Justice K. N. Wanchoo",
+      "info3":"administering Oath of Office to",
+      "info4":"Dr. Zakir Husain",
+      "info5":"as the president of india"
     },
     {
-      "name":"Justice A.M. Ahmadi",
-      "info1": "Test1_4",
-      "info2":"Test2_4",
-      "info3":"Test3_4",
-      "info4":"Test4_4",
-      "info5":"Test5_4"
+      "id":4,
+      "name":"Sh. Varahagiri Venkata Giri",
+      "info1": "24 AUGUST 1969",
+      "info2":"Chief Justice M. Hidayatullah",
+      "info3":"administering Oath of Office to",
+      "info4":"Sh. Varahagiri Venkata Giri",
+      "info5":"as the president of india"
     },
     {
-      "name":"Justice A.M. Ahmadi",
-      "info1": "",
-      "info2":"",
-      "info3":"",
-      "info4":"",
-      "info5":""
+      "id":5,
+      "name":"Sh. Fakhruddin Ali Ahmed",
+      "info1": "24 AUGUST 1974",
+      "info2":"Chief Justice A. N. Ray",
+      "info3":"administering Oath of Office to",
+      "info4":"Sh. Fakhruddin Ali Ahmed",
+     "info5":"as the president of india"
     },
     {
-      "name":"Justice A.M. Ahmadi",
-      "info1": "",
-      "info2":"",
-      "info3":"",
-      "info4":"",
-      "info5":""
+      "id":6,
+      "name":"Sh. Neelam Sanjiva Reddy",
+      "info1": "25 JULY 1977",
+      "info2":"Chief Justice M. Hameedullah Beg",
+      "info3":"administering Oath of Office to",
+      "info4":"Sh. Neelam Sanjiva Reddy",
+      "info5":"as the president of india"
     },
     {
-      "name":"Justice A.M. Ahmadi",
-     "info1": "",
-      "info2":"",
-      "info3":"",
-      "info4":"",
-      "info5":""
+      "id":7,
+      "name":"Giani Zail Singh",
+     "info1": "25 JULY 1982",
+      "info2":"Chief Justice Y. V. Chandrachud",
+      "info3":"administering Oath of Office to",
+      "info4":"Giani Zail Singh",
+      "info5":"as the president of india"
     },
     {
-      "name":"Justice A.M. Ahmadi",
-    "info1": "",
-      "info2":"",
-      "info3":"",
-      "info4":"",
-      "info5":""
+      "id":8,
+      "name":"Sh. R. Venkataraman",
+      "info1": "25 JULY 1987",
+      "info2":"Chief Justice R. S. Pathak",
+      "info3":"administering Oath of Office to",
+      "info4":"Sh. R. Venkataraman",
+      "info5":"as the president of india"
     },
     {
-      "name":"Justice A.M. Ahmadi",
-      "info1": "",
-      "info2":"",
-      "info3":"",
-      "info4":"",
-      "info5":""
+      "id":9,
+      "name":"Sh. Shankar Dayal Sharma",
+      "info1":"25 JULY 1992",
+      "info2":"Chief Justice M. H. Kania",
+      "info3":"administering Oath of Office to",
+      "info4":"Sh. Shankar Dayal Sharma",
+      "info5":"as the president of india"
     },
     {
-      "name":"Justice A.M. Ahmadi",
-     "info1": "",
-      "info2":"",
-      "info3":"",
-      "info4":"",
-      "info5":""
+      "id":10,
+      "name":"Sh. K. R. Narayanan",
+     "info1": "25 JULY 1997",
+      "info2":"Chief Justice J. S. Verma",
+      "info3":"administering Oath of Office to",
+      "info4":"Sh. K. R. Narayanan",
+      "info5":"as the president of india"
     },
     {
-      "name":"Justice A.M. Ahmadi",
-     "info1": "",
-      "info2":"",
-      "info3":"",
-      "info4":"",
-      "info5":""
+      "id":11,
+      "name":"Dr. A. P. J. Abdul Kalam",
+     "info1": "25 JULY 2002",
+      "info2":"Chief Justice B. N. Kirpal",
+      "info3":"administering Oath of Office to",
+      "info4":"Dr. A. P. J. Abdul Kalam",
+      "info5":"as the president of india"
     },
     {
-      "name":"Justice A.M. Ahmadi",
-     "info1": "",
-      "info2":"",
-      "info3":"",
-      "info4":"",
-      "info5":""
+      "id":12,
+      "name":"Smt. Pratibha Devisingh Patil",
+     "info1": "25 JULY 2007",
+      "info2":"Chief Justice K. G. Balakrishnan",
+      "info3":"administering Oath of Office to",
+      "info4":"Smt. Pratibha Devisingh Patil",
+      "info5":"as the president of india"
     },
     {
-      "name":"Justice A.M. Ahmadi",
-      "info1": "",
-      "info2":"",
-      "info3":"",
-      "info4":"",
-      "info5":""
+      "id":13,
+      "name":"Sh. Pranab Mukherjee",
+      "info1": "25 JULY 2012",
+      "info2":"Chief Justice S. H. Kapadia",
+      "info3":"administering Oath of Office to",
+      "info4":"Sh. Pranab Mukherjee",
+      "info5":"as the president of india"
     },
     {
-      "name":"Justice A.M. Ahmadi",
-      "info1": "",
-      "info2":"",
-      "info3":"",
-      "info4":"",
-      "info5":""
+      "id":14,
+      "name":"Sh. Ram Nath Kovind",
+      "info1": "25 JULY 2017",
+      "info2":"Chief Justice Jagdish Singh Khehar",
+      "info3":"administering Oath of Office to",
+      "info4":"Sh. Ram Nath Kovind",
+      "info5":"as the president of india"
     },
     {
-      "name":"Justice A.M. Ahmadi",
-     "info1": "",
-      "info2":"",
-      "info3":"",
-      "info4":"",
-      "info5":""
+      "id":15,
+      "name":"Smt. Droupadi Murmu",
+     "info1": "25 JULY 2022",
+      "info2":"Chief Justice N. V. Ramana",
+      "info3":"administering Oath of Office to",
+      "info4":"Smt. Droupadi Murmu",
+      "info5":"as the president of india"
     }
   ]
 }

@@ -70,7 +70,7 @@ public class Manager : MonoBehaviour
     {
         instance = this;
 
-        ConfigManager.instance.currentVolume += OnVolumeChange;
+        
 
         if (buildType == BuildType.PresidentOath)
         {
@@ -95,6 +95,11 @@ public class Manager : MonoBehaviour
 
         StartCoroutine(LoadVideoButtonTextures());
         StartCoroutine(LoadVideoSelectionSprite());
+    }
+
+    private void Start()
+    {
+        ConfigManager.instance.currentVolume += OnVolumeChange;
     }
 
     private void Update()
@@ -171,17 +176,28 @@ public class Manager : MonoBehaviour
     private IEnumerator LoadVideoButtonTextures()
     {
         yield return null;
-        var files = Directory.GetFiles(Application.streamingAssetsPath +folderName + "/Images/ButtonImages/", "*.*", SearchOption.AllDirectories);
-        foreach (string filename in files)
+
+        string path = Application.streamingAssetsPath + folderName + "/Images/ButtonImages/";
+        int index = 1;
+
+        while (true)
         {
-            if (Regex.IsMatch(filename, @".jpg|.png|.jpeg$"))
-                if (!filename.Contains(".meta"))
-                {
-                    var rawData = File.ReadAllBytes(filename);
-                    Texture2D tex = new (2, 2);
-                    tex.LoadImage(rawData);
-                    videoButtonTextures.Add(tex);
-                }
+            string filePath = Path.Combine(path, $"{index}.png");
+
+            if (File.Exists(filePath))
+            {
+                var rawData = File.ReadAllBytes(filePath);
+                Texture2D tex = new Texture2D(2, 2);
+                tex.LoadImage(rawData);
+                videoButtonTextures.Add(tex);
+            }
+            else
+            {
+                break;
+            }
+
+            index++;
+            yield return null;
         }
 
         yield return new WaitForSeconds(0.2f);
@@ -194,18 +210,28 @@ public class Manager : MonoBehaviour
     private IEnumerator LoadVideoSelectionSprite()
     {
         yield return null;
-        var files = Directory.GetFiles(Application.streamingAssetsPath + folderName + "/Images/SelectedImages/", "*.*", SearchOption.AllDirectories);
-        foreach (string filename in files)
+
+        string path = Application.streamingAssetsPath + folderName + "/Images/SelectedImages/";
+        int index = 1; 
+
+        while (true)
         {
-            if (Regex.IsMatch(filename, @".jpg|.png|.jpeg$"))
-                if (!filename.Contains(".meta"))
-                {
-                    var rawData = File.ReadAllBytes(filename);
-                    Texture2D tex = new(2, 2);
-                    tex.LoadImage(rawData);
-                  
-                    videoSelectionSprites.Add(tex);
-                }
+            string filePath = Path.Combine(path, $"{index}.png");
+
+            if (File.Exists(filePath))
+            {
+                var rawData = File.ReadAllBytes(filePath);
+                Texture2D tex = new Texture2D(2, 2);
+                tex.LoadImage(rawData);
+                videoSelectionSprites.Add(tex);
+            }
+            else
+            {
+                break; 
+            }
+
+            index++; 
+            yield return null; 
         }
     }
     public void SelectVideoImage(int index)
