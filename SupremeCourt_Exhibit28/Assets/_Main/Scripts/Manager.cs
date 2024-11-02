@@ -23,6 +23,8 @@ public class Infos
     public string info3;
     public string info4;
     public string info5;
+    public bool isVideo;
+    public string videoname;
 }
 
 public class Manager : MonoBehaviour
@@ -59,8 +61,15 @@ public class Manager : MonoBehaviour
     [SerializeField] private Sprite[] videoButtonSprite;
     [SerializeField] private bool animationState;
 
+    [SerializeField] private GameObject[] videoPlayAndPauseButtons;
+    [SerializeField] private VideoPlayer holdingVideoPlayer;
+
+    [SerializeField] private PageTransition _PageTransition3;
+    [SerializeField] private PageTransition _PageTransition4_BackFromVideo;
+    [SerializeField] private PageTransition _PageTransition4_ToHome;
+
     private int videoIndex;
-    private int tempIndex = -1;
+    private string tempName = "tempName";
     private bool videoStatus;
     private  bool sliderReset;
     private string folderName;
@@ -93,6 +102,8 @@ public class Manager : MonoBehaviour
             infoText.infos[i].name;
         }
 
+        PlayHoldingScreenVideo();
+
         StartCoroutine(LoadVideoButtonTextures());
         StartCoroutine(LoadVideoSelectionSprite());
     }
@@ -101,6 +112,8 @@ public class Manager : MonoBehaviour
     {
         ConfigManager.instance.currentVolume += OnVolumeChange;
     }
+
+
 
     private void Update()
     {
@@ -161,6 +174,17 @@ public class Manager : MonoBehaviour
     }
 
     #endregion
+
+    private void PlayHoldingScreenVideo()
+    {
+        holdingVideoPlayer.url = Application.streamingAssetsPath + folderName + "/Holding.mp4";
+        holdingVideoPlayer.Play();
+    }
+
+    private void StopHoldingVideoPlayer()
+    {
+        holdingVideoPlayer.Stop();
+    }
 
     private void OnVolumeChange(float value)
     {
@@ -251,6 +275,11 @@ public class Manager : MonoBehaviour
 
         videoIndex = index;
 
+        foreach (GameObject i in videoPlayAndPauseButtons)
+        {
+            i.SetActive(infoText.infos[index].isVideo);
+        }
+
         Invoke(nameof(SwitchToVideoScreen), 0.5f);
 
     }
@@ -270,21 +299,22 @@ public class Manager : MonoBehaviour
     }
     private void SwitchToVideoScreen()
     {
-        canvasTransorm.GetChild(2).gameObject.SetActive(false);
-        canvasTransorm.GetChild(3).gameObject.SetActive(true);
+        //canvasTransorm.GetChild(2).gameObject.SetActive(false);
+        //canvasTransorm.GetChild(3).gameObject.SetActive(true);
+
+        _PageTransition3.Transition();
     }
     private void SwitchToSelectionScreen()
     {
-        canvasTransorm.GetChild(3).gameObject.SetActive(false);
-        canvasTransorm.GetChild(2).gameObject.SetActive(true);
+        _PageTransition4_BackFromVideo.Transition();
         videoButton.sprite = videoButtonSprite[1];
 
     }
-    private void PlayVideo(int index)
+    private void PlayVideo(string videoName)
     {
-        if (tempIndex != index)
+        if (tempName != videoName)
         {
-            vidPlayer.url = Application.streamingAssetsPath + folderName + "/videos/" + index.ToString() + ".mp4";
+            vidPlayer.url = Application.streamingAssetsPath + folderName + "/videos/" + videoName + ".mp4";
         }
        
         vidPlayer.Play();
@@ -298,7 +328,7 @@ public class Manager : MonoBehaviour
             videoButton.sprite = videoButtonSprite[1];
         }
 
-        tempIndex = index;
+        tempName = videoName;
 
     }
     private void PauseVideo()
@@ -321,7 +351,7 @@ public class Manager : MonoBehaviour
 
        
         videoButton.sprite = videoButtonSprite[1];
-        tempIndex = -1;
+        tempName = "tempName";
         videoStatus = false;
 
       
@@ -332,13 +362,11 @@ public class Manager : MonoBehaviour
     }
     public void Home()
     {
-        foreach (Transform child in canvasTransorm)
-        {
-            child.gameObject.SetActive(false);
-        }
-
-        canvasTransorm.GetChild(0).gameObject.SetActive(true);
+        _PageTransition4_ToHome.Transition();
+        PlayHoldingScreenVideo();
     }
+
+
     private void OnApplicationQuit()
     {
         vidPlayer.loopPointReached -= EndReached;
@@ -350,7 +378,7 @@ public class Manager : MonoBehaviour
 
         if (videoStatus)
         {
-            PlayVideo(videoIndex + 1);
+            PlayVideo(infoText.infos[videoIndex].videoname);
         }
         else
         {
