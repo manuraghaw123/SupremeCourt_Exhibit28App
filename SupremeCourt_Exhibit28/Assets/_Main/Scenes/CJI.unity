@@ -458,7 +458,6 @@ MonoBehaviour:
   - {fileID: 1934172473}
   holdingVideoPlayer: {fileID: 508059158}
   _PageTransition3: {fileID: 1234728633}
-  _PageTransition3_Home_To_Holding: {fileID: 159790987}
   _PageTransition4_BackFromVideo: {fileID: 883368576}
   _PageTransition4_ToHome: {fileID: 262484150}
 --- !u!114 &73768807
@@ -4519,11 +4518,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'CHIEF JUSTICES
+  m_text: 'GUARDIANS OF JUSTICE:
 
-    OF INDIA SWORN IN BY
+    THE OATH OF OFFICE
 
-    THE PRESIDENTS'
+    BY CHIEF JUSTICES'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 50270896eb5e340bd87843e19275718c, type: 2}
   m_sharedMaterial: {fileID: 5565387552503779114, guid: 50270896eb5e340bd87843e19275718c, type: 2}
