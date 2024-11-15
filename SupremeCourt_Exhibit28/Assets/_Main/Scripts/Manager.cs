@@ -68,6 +68,12 @@ public class Manager : MonoBehaviour
     [SerializeField] private PageTransition _PageTransition4_BackFromVideo;
     [SerializeField] private PageTransition _PageTransition4_ToHome;
 
+    [SerializeField] private CanvasGroup[] VideoPlayerScreenCanvas;
+    [SerializeField] private CanvasGroup seekBarCanavasGroup;
+    [SerializeField] private Slider seekBar;
+    [SerializeField] private GameObject checker;
+
+
     private int videoIndex;
     private string tempName = "tempName";
     private bool videoStatus;
@@ -110,6 +116,7 @@ public class Manager : MonoBehaviour
 
     private void Start()
     {
+        seekBar.onValueChanged.AddListener(OnSeekBarValueChanged);
         ConfigManager.instance.currentVolume += OnVolumeChange;
     }
 
@@ -120,6 +127,12 @@ public class Manager : MonoBehaviour
         if (sliderReset)
         {
             slider.value = 1;
+        }
+
+
+        if (!isDragging && vidPlayer.isPlaying && vidPlayer.length > 0)
+        {
+            seekBar.value = (float)(vidPlayer.time / vidPlayer.length);
         }
     }
 
@@ -306,7 +319,11 @@ public class Manager : MonoBehaviour
     }
     private void SwitchToSelectionScreen()
     {
-        _PageTransition4_BackFromVideo.Transition();
+        if (!checker.activeSelf)
+        {
+           _PageTransition4_BackFromVideo.Transition();
+        }
+
         videoButton.sprite = videoButtonSprite[1];
 
     }
@@ -315,13 +332,38 @@ public class Manager : MonoBehaviour
         if (tempName != videoName)
         {
             vidPlayer.url = Application.streamingAssetsPath + folderName + "/videos/" + videoName + ".mp4";
+
+            vidPlayer.Prepare();
+
+            vidPlayer.prepareCompleted += (VideoPlayer vp) =>
+            {
+                seekBar.maxValue = 1;
+                seekBar.value = 0;
+                vidPlayer.Play();
+
+            };
         }
-       
-        vidPlayer.Play();
+        else
+        {
+            vidPlayer.Play();
+        }
+
+
+
         if (!animationState)
         {
             animationState = true;
             PlayAnimator(animationState);
+
+            foreach (CanvasGroup i in VideoPlayerScreenCanvas)
+            {
+                StartCoroutine(FadeCanvas(i, 1, 0, 1));
+            }
+
+            StartCoroutine(FadeCanvas(seekBarCanavasGroup, 0, 1, 1));
+
+            VideoPlayerScreenCanvas[1].blocksRaycasts = false;
+            seekBarCanavasGroup.blocksRaycasts = true;
         }
         else
         {
@@ -347,6 +389,15 @@ public class Manager : MonoBehaviour
         {
           animationState = false;
           PlayAnimator(false);
+
+            foreach (CanvasGroup i in VideoPlayerScreenCanvas)
+            {
+                StartCoroutine(FadeCanvas(i, 0, 1, 1));
+            }
+
+            StartCoroutine(FadeCanvas(seekBarCanavasGroup, 1, 0, 1));
+            VideoPlayerScreenCanvas[1].blocksRaycasts = true;
+            seekBarCanavasGroup.blocksRaycasts = false;
         }
 
        
@@ -390,7 +441,7 @@ public class Manager : MonoBehaviour
         if (animationState)
         {
             StopVideo();
-            Invoke(nameof(SwitchToSelectionScreen), 1.3f);
+            Invoke(nameof(SwitchToSelectionScreen), 0.8f);
         }
         else
         {
@@ -408,5 +459,42 @@ public class Manager : MonoBehaviour
         {
             Home();
         }
+    }
+
+    private IEnumerator FadeCanvas(CanvasGroup cg, float start, float end, float duration)
+    {
+        float elapsedTime = 0f;
+        while (elapsedTime < duration)
+        {
+            elapsedTime += Time.deltaTime;
+            cg.alpha = Mathf.Lerp(start, end, elapsedTime / duration);
+            yield return null;
+        }
+        cg.alpha = end;
+    }
+
+    bool isDragging;
+
+    public void OnSeekBarValueChanged(float value)
+    {
+        if (vidPlayer.isPrepared)
+        {
+            double newTime = vidPlayer.length * value;
+            vidPlayer.time = newTime;
+        }
+    }
+
+    public void OnBeginDragSeekBar()
+    {
+        isDragging = true;
+        Debug.Log("onDrag");
+        vidPlayer.Pause();
+    }
+
+    public void OnEndDragSeekBar()
+    {
+        isDragging = false;
+        Debug.Log("onDragENd");
+        vidPlayer.Play();
     }
 }
