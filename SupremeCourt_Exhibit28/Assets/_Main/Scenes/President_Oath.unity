@@ -417,10 +417,10 @@ RectTransform:
   - {fileID: 1934413174}
   m_Father: {fileID: 1686958368}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1615.3756, y: -3511.2002}
-  m_SizeDelta: {x: 972, y: 943.2}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &65098748
 MonoBehaviour:
@@ -646,10 +646,10 @@ RectTransform:
   - {fileID: 34499044}
   m_Father: {fileID: 1686958368}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 550.57556, y: -4524.4}
-  m_SizeDelta: {x: 972, y: 943.2}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &81667490
 MonoBehaviour:
@@ -915,10 +915,10 @@ RectTransform:
   - {fileID: 1776508435}
   m_Father: {fileID: 1686958368}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 2680.1755, y: -3511.2002}
-  m_SizeDelta: {x: 972, y: 943.2}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &105515835
 MonoBehaviour:
@@ -1125,10 +1125,10 @@ RectTransform:
   - {fileID: 93798490}
   m_Father: {fileID: 1686958368}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1615.3756, y: -4524.4}
-  m_SizeDelta: {x: 972, y: 943.2}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &135052164
 MonoBehaviour:
@@ -2101,11 +2101,11 @@ MonoBehaviour:
     functions of the President shall, before entering upon his office, make and subscribe
     in the presence of the Chief Justice of India or, in his absence, the senior-most
     Judge of the Supreme Court available, an oath or affirmation in the following
-    form, that is to say:\n\n \"I, ..., do swear in the name of God (or solemnly
+    form, \nthat is to say:\n\n \"I, ..., do swear in the name of God (or solemnly
     affirm) that I will faithfully execute the office of President (or discharge
     the functions of the President) of India and will to the best of my ability preserve,
     protect and defend the Constitution and the law and that I will devote myself
-    to the service and well-being of the people of India.\""
+    to the service and \nwell-being of the people of India.\""
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 676022b7092ce4042b27fc2488aee13d, type: 2}
   m_sharedMaterial: {fileID: -7203206047754235091, guid: 676022b7092ce4042b27fc2488aee13d, type: 2}
@@ -3088,10 +3088,10 @@ RectTransform:
   - {fileID: 900058752}
   m_Father: {fileID: 1686958368}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 2680.1755, y: -471.6}
-  m_SizeDelta: {x: 972, y: 943.2}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &523390361
 MonoBehaviour:
@@ -3326,10 +3326,10 @@ RectTransform:
   - {fileID: 777868658}
   m_Father: {fileID: 1686958368}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 2680.1755, y: -1484.8}
-  m_SizeDelta: {x: 972, y: 943.2}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &534468305
 MonoBehaviour:
@@ -3497,10 +3497,10 @@ RectTransform:
   - {fileID: 1428456317}
   m_Father: {fileID: 1686958368}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 550.57556, y: -3511.2002}
-  m_SizeDelta: {x: 972, y: 943.2}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &548177686
 MonoBehaviour:
@@ -3969,10 +3969,10 @@ RectTransform:
   - {fileID: 2104765036}
   m_Father: {fileID: 1686958368}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 2680.1755, y: -4524.4}
-  m_SizeDelta: {x: 972, y: 943.2}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &647336877
 MonoBehaviour:
@@ -4885,10 +4885,10 @@ RectTransform:
   - {fileID: 702250617}
   m_Father: {fileID: 1686958368}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 2680.1755, y: -2498}
-  m_SizeDelta: {x: 972, y: 943.2}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &782987023
 MonoBehaviour:
@@ -6329,10 +6329,10 @@ RectTransform:
   - {fileID: 484012249}
   m_Father: {fileID: 1686958368}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 550.57556, y: -2498}
-  m_SizeDelta: {x: 972, y: 943.2}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &981021460
 MonoBehaviour:
@@ -7384,10 +7384,10 @@ RectTransform:
   - {fileID: 663955520}
   m_Father: {fileID: 1686958368}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 550.57556, y: -471.6}
-  m_SizeDelta: {x: 972, y: 943.2}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1252390214
 MonoBehaviour:
@@ -8256,10 +8256,10 @@ RectTransform:
   - {fileID: 618622215}
   m_Father: {fileID: 1686958368}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1615.3756, y: -471.6}
-  m_SizeDelta: {x: 972, y: 943.2}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1743791533
 MonoBehaviour:
@@ -8750,10 +8750,10 @@ RectTransform:
   - {fileID: 1786497516}
   m_Father: {fileID: 1686958368}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1615.3756, y: -2498}
-  m_SizeDelta: {x: 972, y: 943.2}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1778362863
 MonoBehaviour:
@@ -9375,10 +9375,10 @@ RectTransform:
   - {fileID: 967633972}
   m_Father: {fileID: 1686958368}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 550.57556, y: -1484.8}
-  m_SizeDelta: {x: 972, y: 943.2}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1828382084
 MonoBehaviour:
@@ -9982,10 +9982,10 @@ RectTransform:
   - {fileID: 1816729478}
   m_Father: {fileID: 1686958368}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1615.3756, y: -1484.8}
-  m_SizeDelta: {x: 972, y: 943.2}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2080677972
 MonoBehaviour:
