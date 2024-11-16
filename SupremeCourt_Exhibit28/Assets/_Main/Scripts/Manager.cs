@@ -23,6 +23,7 @@ public class Infos
     public string info3;
     public string info4;
     public string info5;
+    public string yearTime;
     public bool isVideo;
     public string videoname;
 }
@@ -49,6 +50,8 @@ public class Manager : MonoBehaviour
     [SerializeField] private Slider slider;
     [SerializeField] private Image filler;
     [SerializeField] private Transform buttonsParentTransform;
+    [SerializeField] private Transform horizontalButtonsParentTransfom;
+    [SerializeField] private Color nonSelectedColor;
     [SerializeField] private Animator[] videoPlayerAnimators;
     [SerializeField] private List<Texture2D> videoButtonTextures;
     [SerializeField] private List<Texture2D> videoSelectionSprites;
@@ -72,6 +75,7 @@ public class Manager : MonoBehaviour
     [SerializeField] private CanvasGroup seekBarCanavasGroup;
     [SerializeField] private Slider seekBar;
     [SerializeField] private GameObject checker;
+    [SerializeField] private Scrollbar horizontalSelectionScrollbar;
 
 
     private int videoIndex;
@@ -79,6 +83,7 @@ public class Manager : MonoBehaviour
     private bool videoStatus;
     private  bool sliderReset;
     private string folderName;
+    private bool isTransition;
     
 
     private void Awake()
@@ -106,12 +111,20 @@ public class Manager : MonoBehaviour
          
             buttonsParentTransform.GetChild(i).GetChild(1).GetComponent<TextMeshProUGUI>().text =
             infoText.infos[i].name;
+
+            horizontalButtonsParentTransfom.GetChild(i).GetChild(2).GetComponent<TextMeshProUGUI>().text =
+            infoText.infos[i].name;
+
+            horizontalButtonsParentTransfom.GetChild(i).GetChild(3).GetComponent<TextMeshProUGUI>().text =
+           infoText.infos[i].yearTime;
         }
 
         PlayHoldingScreenVideo();
 
         StartCoroutine(LoadVideoButtonTextures());
         StartCoroutine(LoadVideoSelectionSprite());
+
+        horizontalSelectionScrollbar.value = 0;
     }
 
     private void Start()
@@ -273,10 +286,28 @@ public class Manager : MonoBehaviour
     }
     public void SelectVideoImage(int index)
     {
+        if (!isTransition)
+        {
+            horizontalSelectionScrollbar.value = 0;
+        }
+        
+
         foreach (Transform child in buttonsParentTransform)
         {
             child.GetComponent<Image>().sprite = act_deactive_sprite[0];
         }
+
+        foreach (Transform child in horizontalButtonsParentTransfom)
+        {
+            child.GetChild(0).gameObject.SetActive(false);
+            child.GetChild(2).GetComponent<TextMeshProUGUI>().color = nonSelectedColor;
+            child.GetChild(3).GetComponent<TextMeshProUGUI>().color = nonSelectedColor;
+        }
+
+        horizontalButtonsParentTransfom.GetChild(index).GetChild(0).gameObject.SetActive(true);
+        horizontalButtonsParentTransfom.GetChild(index).GetChild(2).GetComponent<TextMeshProUGUI>().color = Color.white;
+        horizontalButtonsParentTransfom.GetChild(index).GetChild(3).GetComponent<TextMeshProUGUI>().color = Color.white;
+
         buttonsParentTransform.GetChild(index).GetComponent<Image>().sprite = act_deactive_sprite[1];
 
         SelectText(index);
@@ -293,7 +324,11 @@ public class Manager : MonoBehaviour
             i.SetActive(infoText.infos[index].isVideo);
         }
 
-        Invoke(nameof(SwitchToVideoScreen), 0.5f);
+        if (!isTransition)
+        {
+            Invoke(nameof(SwitchToVideoScreen), 0.5f);
+        }
+      
 
     }
     private void SelectText(int index)
@@ -312,9 +347,6 @@ public class Manager : MonoBehaviour
     }
     private void SwitchToVideoScreen()
     {
-        //canvasTransorm.GetChild(2).gameObject.SetActive(false);
-        //canvasTransorm.GetChild(3).gameObject.SetActive(true);
-
         _PageTransition3.Transition();
     }
     private void SwitchToSelectionScreen()
@@ -496,5 +528,10 @@ public class Manager : MonoBehaviour
         isDragging = false;
         Debug.Log("onDragENd");
         vidPlayer.Play();
+    }
+
+    public void TransitionValue(bool value)
+    {
+        isTransition = value;
     }
 }

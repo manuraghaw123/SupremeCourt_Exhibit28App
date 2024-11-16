@@ -13,7 +13,7 @@ public class VideoSelectionButton : MonoBehaviour
 
     void OnButtonClick()
     {
-       int videoIndex = transform.GetSiblingIndex();
+        int videoIndex = transform.GetSiblingIndex();
         Manager.instance.SelectVideoImage(videoIndex);
     }
 
