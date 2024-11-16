@@ -53,7 +53,6 @@ public class Manager : MonoBehaviour
     [SerializeField] private Transform horizontalButtonsParentTransfom;
     [SerializeField] private Color nonSelectedColor;
     [SerializeField] private Animator[] videoPlayerAnimators;
-    [SerializeField] private List<Texture2D> videoButtonTextures;
     [SerializeField] private List<Texture2D> videoSelectionSprites;
     [SerializeField] private List<Texture2D> videoRoundTexture;
     [SerializeField] private RawImage videoSelectImage;
@@ -110,19 +109,15 @@ public class Manager : MonoBehaviour
         for (int i = 0; i < buttonsParentTransform.childCount; i++)
         {
          
-            buttonsParentTransform.GetChild(i).GetChild(1).GetComponent<TextMeshProUGUI>().text =
+            buttonsParentTransform.GetChild(i).GetChild(2).GetComponent<TextMeshProUGUI>().text =
             infoText.infos[i].name;
 
             horizontalButtonsParentTransfom.GetChild(i).GetChild(2).GetComponent<TextMeshProUGUI>().text =
             infoText.infos[i].name;
-
-            horizontalButtonsParentTransfom.GetChild(i).GetChild(3).GetComponent<TextMeshProUGUI>().text =
-           infoText.infos[i].yearTime;
         }
 
         PlayHoldingScreenVideo();
 
-        StartCoroutine(LoadVideoButtonTextures());
         StartCoroutine(LoadVideoSelectionSprite());
         StartCoroutine(LoadRoundImages());
 
@@ -225,40 +220,7 @@ public class Manager : MonoBehaviour
             i.SetBool("IsPlaying", value);
         }
     }
-    private IEnumerator LoadVideoButtonTextures()
-    {
-        yield return null;
-
-        string path = Application.streamingAssetsPath + folderName + "/Images/ButtonImages/";
-        int index = 1;
-
-        while (true)
-        {
-            string filePath = Path.Combine(path, $"{index}.png");
-
-            if (File.Exists(filePath))
-            {
-                var rawData = File.ReadAllBytes(filePath);
-                Texture2D tex = new Texture2D(2, 2);
-                tex.LoadImage(rawData);
-                videoButtonTextures.Add(tex);
-            }
-            else
-            {
-                break;
-            }
-
-            index++;
-            yield return null;
-        }
-
-        yield return new WaitForSeconds(0.2f);
-
-        for (int i = 0; i < videoButtonTextures.Count; i++)
-        {
-            buttonsParentTransform.GetChild(i).GetChild(0).GetComponent<RawImage>().texture = videoButtonTextures[i];
-        }
-    }
+  
     private IEnumerator LoadVideoSelectionSprite()
     {
         yield return null;
@@ -319,6 +281,7 @@ public class Manager : MonoBehaviour
         for (int i = 0; i < videoRoundTexture.Count; i++)
         {
             horizontalButtonsParentTransfom.GetChild(i).GetChild(1).GetComponent<RawImage>().texture = videoRoundTexture[i];
+            buttonsParentTransform.GetChild(i).GetChild(1).GetComponent<RawImage>().texture = videoRoundTexture[i];
         }
     }
     public void SelectVideoImage(int index)
@@ -331,21 +294,23 @@ public class Manager : MonoBehaviour
 
         foreach (Transform child in buttonsParentTransform)
         {
-            child.GetComponent<Image>().sprite = act_deactive_sprite[0];
+            child.GetChild(0).gameObject.SetActive(false);
+            child.GetChild(2).GetComponent<TextMeshProUGUI>().color = nonSelectedColor;
         }
 
         foreach (Transform child in horizontalButtonsParentTransfom)
         {
             child.GetChild(0).gameObject.SetActive(false);
             child.GetChild(2).GetComponent<TextMeshProUGUI>().color = nonSelectedColor;
-            child.GetChild(3).GetComponent<TextMeshProUGUI>().color = nonSelectedColor;
+           
         }
 
         horizontalButtonsParentTransfom.GetChild(index).GetChild(0).gameObject.SetActive(true);
         horizontalButtonsParentTransfom.GetChild(index).GetChild(2).GetComponent<TextMeshProUGUI>().color = Color.white;
-        horizontalButtonsParentTransfom.GetChild(index).GetChild(3).GetComponent<TextMeshProUGUI>().color = Color.white;
 
-        buttonsParentTransform.GetChild(index).GetComponent<Image>().sprite = act_deactive_sprite[1];
+
+        buttonsParentTransform.GetChild(index).GetChild(0).gameObject.SetActive(true);
+        buttonsParentTransform.GetChild(index).GetChild(2).GetComponent<TextMeshProUGUI>().color = Color.white;
 
         SelectText(index);
 
