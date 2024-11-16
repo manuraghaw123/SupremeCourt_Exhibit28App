@@ -55,6 +55,7 @@ public class Manager : MonoBehaviour
     [SerializeField] private Animator[] videoPlayerAnimators;
     [SerializeField] private List<Texture2D> videoButtonTextures;
     [SerializeField] private List<Texture2D> videoSelectionSprites;
+    [SerializeField] private List<Texture2D> videoRoundTexture;
     [SerializeField] private RawImage videoSelectImage;
     [SerializeField] private Sprite[] act_deactive_sprite;
 
@@ -123,6 +124,7 @@ public class Manager : MonoBehaviour
 
         StartCoroutine(LoadVideoButtonTextures());
         StartCoroutine(LoadVideoSelectionSprite());
+        StartCoroutine(LoadRoundImages());
 
         horizontalSelectionScrollbar.value = 0;
     }
@@ -284,11 +286,46 @@ public class Manager : MonoBehaviour
             yield return null; 
         }
     }
+
+    private IEnumerator LoadRoundImages()
+    {
+        yield return null;
+
+        string path = Application.streamingAssetsPath + folderName + "/Images/RoundImages/";
+        int index = 1;
+
+        while (true)
+        {
+            string filePath = Path.Combine(path, $"{index}.png");
+
+            if (File.Exists(filePath))
+            {
+                var rawData = File.ReadAllBytes(filePath);
+                Texture2D tex = new Texture2D(2, 2);
+                tex.LoadImage(rawData);
+                videoRoundTexture.Add(tex);
+            }
+            else
+            {
+                break;
+            }
+
+            index++;
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(0.2f);
+
+        for (int i = 0; i < videoRoundTexture.Count; i++)
+        {
+            horizontalButtonsParentTransfom.GetChild(i).GetChild(1).GetComponent<RawImage>().texture = videoButtonTextures[i];
+        }
+    }
     public void SelectVideoImage(int index)
     {
         if (!isTransition)
         {
-            horizontalSelectionScrollbar.value = 0;
+            horizontalSelectionScrollbar.value = Remap(scrollBar.value,1,0,0,1);
         }
         
 
