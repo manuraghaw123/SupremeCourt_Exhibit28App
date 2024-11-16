@@ -318,7 +318,7 @@ public class Manager : MonoBehaviour
 
         for (int i = 0; i < videoRoundTexture.Count; i++)
         {
-            horizontalButtonsParentTransfom.GetChild(i).GetChild(1).GetComponent<RawImage>().texture = videoButtonTextures[i];
+            horizontalButtonsParentTransfom.GetChild(i).GetChild(1).GetComponent<RawImage>().texture = videoRoundTexture[i];
         }
     }
     public void SelectVideoImage(int index)
