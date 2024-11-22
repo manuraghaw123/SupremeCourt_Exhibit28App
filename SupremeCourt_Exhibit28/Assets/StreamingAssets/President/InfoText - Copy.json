@@ -1,0 +1,378 @@
+{
+  "infos": [
+    {
+      "id":1,
+      "language":[
+      {
+      "name":"Dr. Rajendra Prasad",
+      "info1": "26 JANUARY 1950",
+      "info2":"Chief Justice H. J. Kania",
+      "info3":"administering Oath of Office to",
+      "info4":"Dr. Rajendra Prasad",
+      "info5":"as the President of India"
+      },
+      {
+      "name":"Dr. Rajendra Prasad",
+      "info1": "26 JANUARY 1950",
+      "info2":"Chief Justice H. J. Kania",
+      "info3":"administering Oath of Office to",
+      "info4":"Dr. Rajendra Prasad",
+      "info5":"as the President of India"
+      }
+      ],
+      
+      "yearTime":"1990-1996",
+      "isVideo": true,
+      "videoname": "1"
+    },
+    {
+      "id":2,
+      "language":[
+        {
+          "name":"Dr. Sarvepalli Radhakrishnan",
+          "info1": "13 MAY 1962",
+          "info2":"Chief Justice Bhuvneshwar Prasad Sinha",
+          "info3":"administering Oath of Office to",
+          "info4":"Dr. Sarvepalli Radhakrishnan",
+          "info5":"as the President of India"
+        },
+        {
+          "name":"Dr. Sarvepalli Radhakrishnan",
+          "info1": "13 MAY 1962",
+          "info2":"Chief Justice Bhuvneshwar Prasad Sinha",
+          "info3":"administering Oath of Office to",
+          "info4":"Dr. Sarvepalli Radhakrishnan",
+          "info5":"as the President of India"
+        }
+      ],
+   
+      "yearTime":"1996-2000",
+      "isVideo": true,
+      "videoname": "2"
+    },
+    {
+      "id":3,
+      "language":[
+        {
+          "name":"Dr. Zakir Husain",
+          "info1": "13 MAY 1967",
+          "info2":"Chief Justice K. N. Wanchoo",
+          "info3":"administering Oath of Office to",
+          "info4":"Dr. Zakir Husain",
+          "info5":"as the President of India"
+        },
+        {
+          "name":"Dr. Zakir Husain",
+          "info1": "13 MAY 1967",
+          "info2":"Chief Justice K. N. Wanchoo",
+          "info3":"administering Oath of Office to",
+          "info4":"Dr. Zakir Husain",
+          "info5":"as the President of India"
+        }
+      ],
+    
+      "yearTime":"1990-1996",
+      "isVideo": true,
+      "videoname": "3"
+    },
+    {
+      "id":4,
+      "language":[
+        {
+          "name":"Sh. Varahagiri Venkata Giri",
+          "info1": "24 AUGUST 1969",
+          "info2":"Chief Justice M. Hidayatullah",
+          "info3":"administering Oath of Office to",
+          "info4":"Sh. Varahagiri Venkata Giri",
+          "info5":"as the President of India"
+        },
+        {
+          "name":"Sh. Varahagiri Venkata Giri",
+          "info1": "24 AUGUST 1969",
+          "info2":"Chief Justice M. Hidayatullah",
+          "info3":"administering Oath of Office to",
+          "info4":"Sh. Varahagiri Venkata Giri",
+          "info5":"as the President of India"
+        }
+      ],
+    
+      "yearTime":"1990-1996",
+      "isVideo": true,
+      "videoname": "4"
+    },
+    {
+      "id":5,
+      "language":[
+        {
+          "name":"Sh. Fakhruddin Ali Ahmed",
+          "info1": "24 AUGUST 1974",
+          "info2":"Chief Justice A. N. Ray",
+          "info3":"administering Oath of Office to",
+          "info4":"Sh. Fakhruddin Ali Ahmed",
+         "info5":"as the President of India"
+        },
+        {
+          "name":"Sh. Fakhruddin Ali Ahmed",
+          "info1": "24 AUGUST 1974",
+          "info2":"Chief Justice A. N. Ray",
+          "info3":"administering Oath of Office to",
+          "info4":"Sh. Fakhruddin Ali Ahmed",
+         "info5":"as the President of India"
+        }
+      ],
+     "yearTime":"1990-1996",
+     "isVideo": true,
+      "videoname": "5"
+    },
+    {
+      "id":6,
+      "language":[
+      {
+      "name":"Sh. Neelam Sanjiva Reddy",
+      "info1": "25 JULY 1977",
+      "info2":"Chief Justice M. Hameedullah Beg",
+      "info3":"administering Oath of Office to",
+      "info4":"Sh. Neelam Sanjiva Reddy",
+      "info5":"as the President of India"
+      },
+      {
+          "name":"Sh. Neelam Sanjiva Reddy",
+          "info1": "25 JULY 1977",
+          "info2":"Chief Justice M. Hameedullah Beg",
+          "info3":"administering Oath of Office to",
+          "info4":"Sh. Neelam Sanjiva Reddy",
+          "info5":"as the President of India"
+      }
+      ],
+      
+      "yearTime":"1990-1996",
+      "isVideo": true,
+      "videoname": "6"
+    },
+    {
+      "id":7,
+      "language":[
+        {
+          "name":"Giani Zail Singh",
+          "info1": "25 JULY 1982",
+           "info2":"Chief Justice Y. V. Chandrachud",
+           "info3":"administering Oath of Office to",
+           "info4":"Giani Zail Singh",
+           "info5":"as the President of India"
+        },
+        {
+          "name":"Giani Zail Singh",
+          "info1": "25 JULY 1982",
+           "info2":"Chief Justice Y. V. Chandrachud",
+           "info3":"administering Oath of Office to",
+           "info4":"Giani Zail Singh",
+           "info5":"as the President of India"
+        }
+
+      ],
+     
+      "yearTime":"1990-1996",
+      "isVideo": true,
+      "videoname": "7"
+    },
+    {
+      "id":8,
+      "language":[
+        {
+      "name":"Sh. R. Venkataraman",
+      "info1": "25 JULY 1987",
+      "info2":"Chief Justice R. S. Pathak",
+      "info3":"administering Oath of Office to",
+      "info4":"Sh. R. Venkataraman",
+      "info5":"as the President of India"
+        },
+        {
+      "name":"Sh. R. Venkataraman",
+      "info1": "25 JULY 1987",
+      "info2":"Chief Justice R. S. Pathak",
+      "info3":"administering Oath of Office to",
+      "info4":"Sh. R. Venkataraman",
+      "info5":"as the President of India"
+        }
+      ],
+      "yearTime":"1990-1996",
+      "isVideo": true,
+      "videoname": "8"
+    },
+    {
+      "id":9,
+      "language":[
+        {
+      "name":"Sh. Shankar Dayal Sharma",
+      "info1":"25 JULY 1992",
+      "info2":"Chief Justice M. H. Kania",
+      "info3":"administering Oath of Office to",
+      "info4":"Sh. Shankar Dayal Sharma",
+      "info5":"as the President of India"
+        },
+        {
+          "name":"Sh. Shankar Dayal Sharma",
+          "info1":"25 JULY 1992",
+          "info2":"Chief Justice M. H. Kania",
+          "info3":"administering Oath of Office to",
+          "info4":"Sh. Shankar Dayal Sharma",
+          "info5":"as the President of India"
+        }
+      ],
+      
+      "yearTime":"1990-1996",
+      "isVideo": true,
+      "videoname": "9"
+    },
+    {
+      "id":10,
+      "language":[
+        {
+          "name":"Sh. K. R. Narayanan",
+          "info1": "25 JULY 1997",
+           "info2":"Chief Justice J. S. Verma",
+           "info3":"administering Oath of Office to",
+           "info4":"Sh. K. R. Narayanan",
+           "info5":"as the President of India"
+        },
+        {
+          "name":"Sh. K. R. Narayanan",
+          "info1": "25 JULY 1997",
+           "info2":"Chief Justice J. S. Verma",
+           "info3":"administering Oath of Office to",
+           "info4":"Sh. K. R. Narayanan",
+           "info5":"as the President of India"
+        }
+      ],
+   
+      "yearTime":"1990-1996",
+      "isVideo": true,
+      "videoname": "10"
+    },
+    {
+      "id":11,
+      "language":[
+        {
+          "name":"Dr. A. P. J. Abdul Kalam",
+          "info1": "25 JULY 2002",
+           "info2":"Chief Justice B. N. Kirpal",
+           "info3":"administering Oath of Office to",
+           "info4":"Dr. A. P. J. Abdul Kalam",
+           "info5":"as the President of India"
+        },
+        {
+          "name":"Dr. A. P. J. Abdul Kalam",
+          "info1": "25 JULY 2002",
+           "info2":"Chief Justice B. N. Kirpal",
+           "info3":"administering Oath of Office to",
+           "info4":"Dr. A. P. J. Abdul Kalam",
+           "info5":"as the President of India"
+        }
+      ],
+     
+      "yearTime":"1990-1996",
+      "isVideo": true,
+      "videoname": "11"
+    },
+    {
+      "id":12,
+      "language":[
+        {
+          "name":"Smt. Pratibha Devisingh Patil",
+          "info1": "25 JULY 2007",
+           "info2":"Chief Justice K. G. Balakrishnan",
+           "info3":"administering Oath of Office to",
+           "info4":"Smt. Pratibha Devisingh Patil",
+           "info5":"as the President of India"
+        },
+        {
+          "name":"Smt. Pratibha Devisingh Patil",
+          "info1": "25 JULY 2007",
+           "info2":"Chief Justice K. G. Balakrishnan",
+           "info3":"administering Oath of Office to",
+           "info4":"Smt. Pratibha Devisingh Patil",
+           "info5":"as the President of India"
+        }
+      ],
+     
+      "yearTime":"1990-1996",
+      "isVideo": true,
+      "videoname": "12"
+    },
+    {
+      "id":13,
+      "language":[
+        {
+      "name":"Sh. Pranab Mukherjee",
+      "info1": "25 JULY 2012",
+      "info2":"Chief Justice S. H. Kapadia",
+      "info3":"administering Oath of Office to",
+      "info4":"Sh. Pranab Mukherjee",
+      "info5":"as the President of India"
+        },
+        {
+          "name":"Sh. Pranab Mukherjee",
+          "info1": "25 JULY 2012",
+          "info2":"Chief Justice S. H. Kapadia",
+          "info3":"administering Oath of Office to",
+          "info4":"Sh. Pranab Mukherjee",
+          "info5":"as the President of India"
+        }
+      ],
+      
+      "yearTime":"1990-1996",
+      "isVideo": true,
+      "videoname": "13"
+    },
+    {
+      "id":14,
+      "language":[
+        {
+          "name":"Sh. Ram Nath Kovind",
+          "info1": "25 JULY 2017",
+          "info2":"Chief Justice Jagdish Singh Khehar",
+          "info3":"administering Oath of Office to",
+          "info4":"Sh. Ram Nath Kovind",
+          "info5":"as the President of India"
+        },
+        {
+          "name":"Sh. Ram Nath Kovind",
+          "info1": "25 JULY 2017",
+          "info2":"Chief Justice Jagdish Singh Khehar",
+          "info3":"administering Oath of Office to",
+          "info4":"Sh. Ram Nath Kovind",
+          "info5":"as the President of India"
+        }
+      ],
+    
+      "yearTime":"1990-1996",
+      "isVideo": true,
+      "videoname": "14"
+    },
+    {
+      "id":15,
+      "language":[
+        {
+          "name":"Smt. Droupadi Murmu",
+          "info1": "25 JULY 2022",
+           "info2":"Chief Justice N. V. Ramana",
+           "info3":"administering Oath of Office to",
+           "info4":"Smt. Droupadi Murmu",
+           "info5":"as the President of India"
+        },
+        {
+          "name":"Smt. Droupadi Murmu",
+          "info1": "25 JULY 2022",
+           "info2":"Chief Justice N. V. Ramana",
+           "info3":"administering Oath of Office to",
+           "info4":"Smt. Droupadi Murmu",
+           "info5":"as the President of India"
+        }
+      ],
+     
+      "yearTime":"1990-1996",
+      "isVideo": true,
+      "videoname": "15"
+    }
+  ]
+}
