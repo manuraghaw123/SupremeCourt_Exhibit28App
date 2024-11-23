@@ -17,15 +17,21 @@ public class InfoText
 [Serializable]
 public class Infos
 {
+    public string date;
+    public List<Language> language; 
+    public string yearTime;
+    public bool isVideo;
+    public string videoname;
+}
+
+[Serializable]
+public class Language
+{
     public string name;
-    public string info1;
     public string info2;
     public string info3;
     public string info4;
     public string info5;
-    public string yearTime;
-    public bool isVideo;
-    public string videoname;
 }
 
 public class Manager : MonoBehaviour
@@ -39,10 +45,12 @@ public class Manager : MonoBehaviour
       CJIOath
     }
 
-
     public BuildType buildType;
    
     public InfoText infoText;
+
+    [SerializeField] private AppLanguage currentLanguage;
+    [SerializeField] private TMP_Dropdown[] lanugaeDropdown;
 
     [SerializeField] private Transform canvasTransorm;
 
@@ -77,6 +85,9 @@ public class Manager : MonoBehaviour
     [SerializeField] private GameObject checker;
     [SerializeField] private Scrollbar horizontalSelectionScrollbar;
 
+    [SerializeField] private GameObject[] EnglishObjects;
+    [SerializeField] private GameObject[] HindiObjects;
+    
 
     private int videoIndex;
     private string tempName = "tempName";
@@ -90,7 +101,11 @@ public class Manager : MonoBehaviour
     {
         instance = this;
 
-        
+        foreach (var dropdown in lanugaeDropdown)
+        {
+            dropdown.onValueChanged.AddListener((index) => OnLanguageChanged(index));
+        }
+
 
         if (buildType == BuildType.PresidentOath)
         {
@@ -103,18 +118,10 @@ public class Manager : MonoBehaviour
 
         vidPlayer.loopPointReached += EndReached;
 
-        string json = File.ReadAllText(Application.streamingAssetsPath + folderName+"/InfoText.json");
+        string json = File.ReadAllText(Application.streamingAssetsPath + folderName+ "/InfoTextNew.json");
         infoText = JsonUtility.FromJson<InfoText>(json);
 
-        for (int i = 0; i < buttonsParentTransform.childCount; i++)
-        {
-         
-            buttonsParentTransform.GetChild(i).GetChild(2).GetComponent<TextMeshProUGUI>().text =
-            infoText.infos[i].name;
-
-            horizontalButtonsParentTransfom.GetChild(i).GetChild(2).GetComponent<TextMeshProUGUI>().text =
-            infoText.infos[i].name;
-        }
+       
 
         PlayHoldingScreenVideo();
 
@@ -128,6 +135,8 @@ public class Manager : MonoBehaviour
     {
         seekBar.onValueChanged.AddListener(OnSeekBarValueChanged);
         ConfigManager.instance.currentVolume += OnVolumeChange;
+
+        ChangeLanguage();
     }
 
 
@@ -335,18 +344,27 @@ public class Manager : MonoBehaviour
     }
     private void SelectText(int index)
     {
-        bigTextHolder.GetChild(0).GetComponent<TextMeshProUGUI>().text = infoText.infos[index].info1;
-        bigTextHolder.GetChild(1).GetComponent<TextMeshProUGUI>().text = infoText.infos[index].info2;
-        bigTextHolder.GetChild(2).GetComponent<TextMeshProUGUI>().text = infoText.infos[index].info3;
-        bigTextHolder.GetChild(3).GetComponent<TextMeshProUGUI>().text = infoText.infos[index].info4;
-        bigTextHolder.GetChild(4).GetComponent<TextMeshProUGUI>().text = infoText.infos[index].info5;
+        if (currentLanguage == AppLanguage.English)
+        {
+            bigTextHolder.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = infoText.infos[index].date;
+            bigTextHolder.GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>().text = infoText.infos[index].language[0].info2;
+            bigTextHolder.GetChild(0).GetChild(2).GetComponent<TextMeshProUGUI>().text = infoText.infos[index].language[0].info3;
+            bigTextHolder.GetChild(0).GetChild(3).GetComponent<TextMeshProUGUI>().text = infoText.infos[index].language[0].info4;
+            bigTextHolder.GetChild(0).GetChild(4).GetComponent<TextMeshProUGUI>().text = infoText.infos[index].language[0].info5;
 
-        smallTextHolder.GetChild(0).GetComponent<TextMeshProUGUI>().text = infoText.infos[index].info1;
-        smallTextHolder.GetChild(1).GetComponent<TextMeshProUGUI>().text = infoText.infos[index].info2;
-        smallTextHolder.GetChild(2).GetComponent<TextMeshProUGUI>().text = infoText.infos[index].info3;
-        smallTextHolder.GetChild(3).GetComponent<TextMeshProUGUI>().text = infoText.infos[index].info4;
-        smallTextHolder.GetChild(4).GetComponent<TextMeshProUGUI>().text = infoText.infos[index].info5;
+            smallTextHolder.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = infoText.infos[index].date;
+            smallTextHolder.GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>().text = infoText.infos[index].language[0].info2;
+            smallTextHolder.GetChild(0).GetChild(2).GetComponent<TextMeshProUGUI>().text = infoText.infos[index].language[0].info3;
+            smallTextHolder.GetChild(0).GetChild(3).GetComponent<TextMeshProUGUI>().text = infoText.infos[index].language[0].info4;
+            smallTextHolder.GetChild(0).GetChild(4).GetComponent<TextMeshProUGUI>().text = infoText.infos[index].language[0].info5;
+        }
+        else
+        { 
+        
+        }
     }
+      
+        
     private void SwitchToVideoScreen()
     {
         _PageTransition3.Transition();
@@ -535,5 +553,62 @@ public class Manager : MonoBehaviour
     public void TransitionValue(bool value)
     {
         isTransition = value;
+    }
+
+    private void OnLanguageChanged(int selectedIndex)
+    {
+        if (lanugaeDropdown == null || lanugaeDropdown.Length == 0) return;
+
+       
+        foreach (var dropdown in lanugaeDropdown)
+        {
+            dropdown.SetValueWithoutNotify(selectedIndex); 
+        }
+
+      
+        ApplyLanguage(selectedIndex);
+    }
+
+    private void ApplyLanguage(int selectedIndex)
+    {
+        switch (selectedIndex)
+        {
+            case 0:
+                currentLanguage = AppLanguage.English;
+                break;
+            case 1:
+                currentLanguage = AppLanguage.Hindi;
+                break;
+            default:
+                Debug.LogWarning("Selected language not handled.");
+                break;
+        }
+
+        ChangeLanguage();
+
+    }
+
+    private void ChangeLanguage()
+    {
+        for (int i = 0; i < buttonsParentTransform.childCount; i++)
+        {
+            buttonsParentTransform.GetChild(i).GetChild(2).GetComponent<TmpTextLanguageManager>().SetContent(
+            infoText.infos[i].language[(int)currentLanguage].name, currentLanguage);
+
+            horizontalButtonsParentTransfom.GetChild(i).GetChild(2).GetComponent<TmpTextLanguageManager>().SetContent(
+            infoText.infos[i].language[(int)currentLanguage].name, currentLanguage);
+        }
+
+        bool showEnglish = currentLanguage == AppLanguage.English;
+        foreach (GameObject obj in EnglishObjects)
+        {
+            obj.SetActive(showEnglish);
+        }
+
+        bool showHindi = currentLanguage == AppLanguage.Hindi;
+        foreach (GameObject obj in HindiObjects)
+        {
+            obj.SetActive(showHindi);
+        }
     }
 }
