@@ -36,6 +36,7 @@ public static class TextExtension // created extension for Text and TextMeshPro
         value = value.Replace("M़", "M+");
         value = value.Replace("<f़", "<+f");
         value = value.Replace("<़", "<+");
+        value = value.Replace("Mf़", "fM+");
         text.text = value;
     }
 }

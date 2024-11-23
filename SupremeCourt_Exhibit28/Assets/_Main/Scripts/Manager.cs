@@ -87,6 +87,11 @@ public class Manager : MonoBehaviour
 
     [SerializeField] private GameObject[] EnglishObjects;
     [SerializeField] private GameObject[] HindiObjects;
+
+    [SerializeField] private Image[] screenImages;
+    [SerializeField] private Sprite[] englishSprites;
+    [SerializeField] private Sprite[] hindiSprites;
+
     
 
     private int videoIndex;
@@ -344,8 +349,8 @@ public class Manager : MonoBehaviour
     }
     private void SelectText(int index)
     {
-        if (currentLanguage == AppLanguage.English)
-        {
+        // For English
+        
             bigTextHolder.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = infoText.infos[index].date;
             bigTextHolder.GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>().text = infoText.infos[index].language[0].info2;
             bigTextHolder.GetChild(0).GetChild(2).GetComponent<TextMeshProUGUI>().text = infoText.infos[index].language[0].info3;
@@ -357,11 +362,21 @@ public class Manager : MonoBehaviour
             smallTextHolder.GetChild(0).GetChild(2).GetComponent<TextMeshProUGUI>().text = infoText.infos[index].language[0].info3;
             smallTextHolder.GetChild(0).GetChild(3).GetComponent<TextMeshProUGUI>().text = infoText.infos[index].language[0].info4;
             smallTextHolder.GetChild(0).GetChild(4).GetComponent<TextMeshProUGUI>().text = infoText.infos[index].language[0].info5;
-        }
-        else
-        { 
-        
-        }
+
+        // For Hindi
+
+      
+            bigTextHolder.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>().text = infoText.infos[index].date;
+            bigTextHolder.GetChild(1).GetChild(1).GetComponent<TmpTextLanguageManager>().SetContent(infoText.infos[index].language[1].info2, AppLanguage.Hindi);
+            bigTextHolder.GetChild(1).GetChild(2).GetComponent<TmpTextLanguageManager>().SetContent(infoText.infos[index].language[1].info3, AppLanguage.Hindi);
+            bigTextHolder.GetChild(1).GetChild(3).GetComponent<TmpTextLanguageManager>().SetContent(infoText.infos[index].language[1].info4, AppLanguage.Hindi);
+            bigTextHolder.GetChild(1).GetChild(4).GetComponent<TmpTextLanguageManager>().SetContent(infoText.infos[index].language[1].info5, AppLanguage.Hindi);
+
+            smallTextHolder.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>().text = infoText.infos[index].date;
+            smallTextHolder.GetChild(1).GetChild(1).GetComponent<TmpTextLanguageManager>().SetContent(infoText.infos[index].language[1].info2, AppLanguage.Hindi);
+            smallTextHolder.GetChild(1).GetChild(2).GetComponent<TmpTextLanguageManager>().SetContent(infoText.infos[index].language[1].info3, AppLanguage.Hindi);
+            smallTextHolder.GetChild(1).GetChild(3).GetComponent<TmpTextLanguageManager>().SetContent(infoText.infos[index].language[1].info4, AppLanguage.Hindi);
+            smallTextHolder.GetChild(1).GetChild(4).GetComponent<TmpTextLanguageManager>().SetContent(infoText.infos[index].language[1].info5, AppLanguage.Hindi);
     }
       
         
@@ -609,6 +624,21 @@ public class Manager : MonoBehaviour
         foreach (GameObject obj in HindiObjects)
         {
             obj.SetActive(showHindi);
+        }
+
+        if (currentLanguage == AppLanguage.English)
+        {
+            for (int i = 0; i < screenImages.Length; i++)
+            {
+                screenImages[i].sprite = englishSprites[i];
+            }
+        }
+        else if (currentLanguage == AppLanguage.Hindi)
+        {
+            for (int i = 0; i < screenImages.Length; i++)
+            {
+                screenImages[i].sprite = hindiSprites[i];
+            }
         }
     }
 }
