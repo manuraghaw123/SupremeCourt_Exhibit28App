@@ -156,7 +156,7 @@ public class Manager : MonoBehaviour
 
         if (!isDragging && vidPlayer.isPlaying && vidPlayer.length > 0)
         {
-            seekBar.value = (float)(vidPlayer.time / vidPlayer.length);
+            seekBar.SetValueWithoutNotify((float)(vidPlayer.time / vidPlayer.length));
         }
     }
 
@@ -398,7 +398,7 @@ public class Manager : MonoBehaviour
     {
         if (tempName != videoName)
         {
-            vidPlayer.url = Application.streamingAssetsPath + folderName + "/videos/" + videoName + ".mp4";
+            vidPlayer.url = Application.streamingAssetsPath + folderName + "/videos/" + videoName+".mp4";
 
             vidPlayer.Prepare();
 
@@ -554,14 +554,12 @@ public class Manager : MonoBehaviour
     public void OnBeginDragSeekBar()
     {
         isDragging = true;
-        Debug.Log("onDrag");
         vidPlayer.Pause();
     }
 
     public void OnEndDragSeekBar()
     {
         isDragging = false;
-        Debug.Log("onDragENd");
         vidPlayer.Play();
     }
 
