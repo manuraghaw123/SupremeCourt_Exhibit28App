@@ -17,7 +17,7 @@ public class InfoText
 [Serializable]
 public class Infos
 {
-    public string date;
+  
     public List<Language> language; 
     public string yearTime;
     public bool isVideo;
@@ -27,6 +27,7 @@ public class Infos
 [Serializable]
 public class Language
 {
+    public string date;
     public string name;
     public string info2;
     public string info3;
@@ -351,13 +352,13 @@ public class Manager : MonoBehaviour
     {
         // For English
         
-            bigTextHolder.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = infoText.infos[index].date;
+            bigTextHolder.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = infoText.infos[index].language[0].date;
             bigTextHolder.GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>().text = infoText.infos[index].language[0].info2;
             bigTextHolder.GetChild(0).GetChild(2).GetComponent<TextMeshProUGUI>().text = infoText.infos[index].language[0].info3;
             bigTextHolder.GetChild(0).GetChild(3).GetComponent<TextMeshProUGUI>().text = infoText.infos[index].language[0].info4;
             bigTextHolder.GetChild(0).GetChild(4).GetComponent<TextMeshProUGUI>().text = infoText.infos[index].language[0].info5;
 
-            smallTextHolder.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = infoText.infos[index].date;
+            smallTextHolder.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = infoText.infos[index].language[0].date;
             smallTextHolder.GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>().text = infoText.infos[index].language[0].info2;
             smallTextHolder.GetChild(0).GetChild(2).GetComponent<TextMeshProUGUI>().text = infoText.infos[index].language[0].info3;
             smallTextHolder.GetChild(0).GetChild(3).GetComponent<TextMeshProUGUI>().text = infoText.infos[index].language[0].info4;
@@ -366,13 +367,13 @@ public class Manager : MonoBehaviour
         // For Hindi
 
       
-            bigTextHolder.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>().text = infoText.infos[index].date;
+            bigTextHolder.GetChild(1).GetChild(0).GetComponent<TmpTextLanguageManager>().SetContent(infoText.infos[index].language[1].date, AppLanguage.Hindi);
             bigTextHolder.GetChild(1).GetChild(1).GetComponent<TmpTextLanguageManager>().SetContent(infoText.infos[index].language[1].info2, AppLanguage.Hindi);
             bigTextHolder.GetChild(1).GetChild(2).GetComponent<TmpTextLanguageManager>().SetContent(infoText.infos[index].language[1].info3, AppLanguage.Hindi);
             bigTextHolder.GetChild(1).GetChild(3).GetComponent<TmpTextLanguageManager>().SetContent(infoText.infos[index].language[1].info4, AppLanguage.Hindi);
             bigTextHolder.GetChild(1).GetChild(4).GetComponent<TmpTextLanguageManager>().SetContent(infoText.infos[index].language[1].info5, AppLanguage.Hindi);
 
-            smallTextHolder.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>().text = infoText.infos[index].date;
+            smallTextHolder.GetChild(1).GetChild(0).GetComponent<TmpTextLanguageManager>().SetContent(infoText.infos[index].language[1].date, AppLanguage.Hindi);
             smallTextHolder.GetChild(1).GetChild(1).GetComponent<TmpTextLanguageManager>().SetContent(infoText.infos[index].language[1].info2, AppLanguage.Hindi);
             smallTextHolder.GetChild(1).GetChild(2).GetComponent<TmpTextLanguageManager>().SetContent(infoText.infos[index].language[1].info3, AppLanguage.Hindi);
             smallTextHolder.GetChild(1).GetChild(3).GetComponent<TmpTextLanguageManager>().SetContent(infoText.infos[index].language[1].info4, AppLanguage.Hindi);
