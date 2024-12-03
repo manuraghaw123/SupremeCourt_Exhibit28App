@@ -141,8 +141,7 @@ public class Manager : MonoBehaviour
     {
         seekBar.onValueChanged.AddListener(OnSeekBarValueChanged);
         ConfigManager.instance.currentVolume += OnVolumeChange;
-
-        ChangeLanguage();
+        ConfigManager.instance.currentLanguage += OnLanguageChange;
     }
 
 
@@ -228,6 +227,24 @@ public class Manager : MonoBehaviour
     {
         vidPlayer.SetDirectAudioVolume(0, value);
     }
+
+    private void OnLanguageChange(bool value)
+    {
+        currentLanguage = value ? AppLanguage.English : AppLanguage.Hindi;
+
+        int dropdownIndex = value ? 0 : 1;
+
+        if (lanugaeDropdown != null && lanugaeDropdown.Length > 0)
+        {
+            foreach (var dropdown in lanugaeDropdown)
+            {
+                dropdown.SetValueWithoutNotify(dropdownIndex);
+            }
+        }
+
+        ChangeLanguage();
+    }
+
     private void PlayAnimator(bool value)
     {
         foreach (Animator i in videoPlayerAnimators)
@@ -585,21 +602,10 @@ public class Manager : MonoBehaviour
 
     private void ApplyLanguage(int selectedIndex)
     {
-        switch (selectedIndex)
-        {
-            case 0:
-                currentLanguage = AppLanguage.English;
-                break;
-            case 1:
-                currentLanguage = AppLanguage.Hindi;
-                break;
-            default:
-                Debug.LogWarning("Selected language not handled.");
-                break;
-        }
+        bool isEnglish = selectedIndex == 0;
+        OnLanguageChange(isEnglish);
 
-        ChangeLanguage();
-
+        ConfigManager.instance.LanguageSelection(isEnglish);
     }
 
     private void ChangeLanguage()

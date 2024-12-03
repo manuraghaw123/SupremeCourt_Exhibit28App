@@ -89,7 +89,7 @@ public class ConfigManager : MonoBehaviour
         config.volume = volume;
         SaveJson();
     }
-    private void LanguageSelection(bool value)
+    public void LanguageSelection(bool value)
     {
         config.isEnglish = value;
         currentLanguage?.Invoke(value);
