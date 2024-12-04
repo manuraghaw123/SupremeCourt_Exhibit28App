@@ -605,7 +605,7 @@ public class Manager : MonoBehaviour
         bool isEnglish = selectedIndex == 0;
         OnLanguageChange(isEnglish);
 
-        ConfigManager.instance.LanguageSelection(isEnglish);
+        //ConfigManager.instance.LanguageSelection(isEnglish);
     }
 
     private void ChangeLanguage()
